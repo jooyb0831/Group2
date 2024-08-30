@@ -8,8 +8,8 @@ public class Seat : MonoBehaviour
 
     public Transform seatPosition;
 
-    public float Distance = 1f;
-    public Transform player;
+    public float Distance = 0.1f;
+    private Player p;
 
     void Start()
     {
@@ -32,7 +32,22 @@ public class Seat : MonoBehaviour
 
     private bool LookigAtObject()
     {
-        Vector2 dirPlayer = player.position - transform.position;
+        if (p == null)
+        {
+            p = GameManager.Instance.player;
+        }
+        float dist = Vector2.Distance(p.transform.position, transform.position);
+
+        if (dist <= 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+        /*Vector2 dirPlayer = player.position - transform.position;
         dirPlayer.Normalize();
 
         Ray ray = new Ray(transform.position, dirPlayer);
@@ -43,11 +58,11 @@ public class Seat : MonoBehaviour
             return hit.transform == player;
         }
 
-        return false;
+        return false;*/
     }
 
     private void Interact()
     {
-        player.transform.position = seatPosition.position;
+        p.transform.position = seatPosition.position;
     }
 }

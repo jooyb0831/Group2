@@ -6,8 +6,8 @@ public class MenuRecipe : MonoBehaviour
 {
     public Transform menuPosition;
 
-    public float Distance = 1f;
-    //public Transform player;
+    public float Distance = 0.1f;
+    private Player p;
 
     void Start()
     {
@@ -19,7 +19,7 @@ public class MenuRecipe : MonoBehaviour
 
     void Update()
     {
-        //if (LookingAtObject())
+        if (LookingAtObject())
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -28,9 +28,24 @@ public class MenuRecipe : MonoBehaviour
         }
     }
 
-    /*private bool LookingAtObject()
+    private bool LookingAtObject()
     {
-        Vector2 dirToPlayer = player.position - transform.position;
+        if (p == null)
+        {
+            p = GameManager.Instance.player;
+        }
+        float dist = Vector2.Distance(p.transform.position, transform.position);
+
+        if (dist <= 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+        /*Vector2 dirToPlayer = player.position - transform.position;
         dirToPlayer.Normalize();
 
         Ray ray = new Ray(transform.position, dirToPlayer);
@@ -41,6 +56,6 @@ public class MenuRecipe : MonoBehaviour
             return hit.transform == player;
         }
 
-        return false;
-    }*/
+        return false;*/
+    }
 }

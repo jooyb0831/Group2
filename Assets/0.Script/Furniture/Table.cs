@@ -5,10 +5,10 @@ using UnityEngine;
 public class Table : MonoBehaviour
 {
     public Transform putPosition;
-    public GameObject item;
+    //public GameObject item;
 
-    public float Distance = 1f;
-    public Transform player;
+    public float Distance = 0.1f;
+    private Player p;
 
     private void Start()
     {
@@ -21,21 +21,36 @@ public class Table : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                ItemPutOnTable();
+                //ItemPutOnTable();
             }
         }
     }
 
-    public void ItemPutOnTable()
+    /*public void ItemPutOnTable()
     {
         item.transform.position = putPosition.position;
         item.GetComponent<Collider2D>().enabled = false;
         // 콜라이더를 비활성화함 => 더 이상 줍지 못하게
-    }
+    }*/
 
     public bool LookingAtObject()
     {
-        Vector2 dirToPlayer = player.position - transform.position;
+        if (p == null)
+        {
+            p = GameManager.Instance.player;
+        }
+        float dist = Vector2.Distance(p.transform.position, transform.position);
+
+        if (dist <= 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+        /*Vector2 dirToPlayer = player.position - transform.position;
         dirToPlayer.Normalize();
 
         Ray ray = new Ray(transform.position, dirToPlayer);
@@ -46,6 +61,6 @@ public class Table : MonoBehaviour
             return hit.transform == player;
         }
 
-        return false;
+        return false;*/
     }
 }

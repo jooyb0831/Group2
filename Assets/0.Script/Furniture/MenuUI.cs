@@ -19,8 +19,6 @@ public class MenuUI : MonoBehaviour
 
     private int currentIndex;
 
-    private bool isMenuActived = false;
-
     private void Start()
     {
         // 메뉴를 검정색과 ???로 리셋
@@ -36,16 +34,6 @@ public class MenuUI : MonoBehaviour
         {
             StartCoroutine(UnpackMenu());
         }
-
-        /*if (Input.GetKeyDown(KeyCode.F2))
-        {
-            ResetMenu();
-        }*/
-    }
-
-    void ResetMenu()
-    {
-        
     }
 
     IEnumerator UnpackMenu()
@@ -56,4 +44,13 @@ public class MenuUI : MonoBehaviour
          menuTxt1.text = originalTxt1;
          menuTxt2.text = originalTxt2;
     }
+
+    /*void BuyRecipe()
+    {
+        if ()
+        {
+            GameUI.Instance.Gold
+
+        }
+    }*/
 }

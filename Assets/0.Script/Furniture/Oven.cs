@@ -117,8 +117,8 @@ public class Oven : MonoBehaviour
     public Recipe[] recipes;
 
 
-    public float Distance = 1f;
-    //public Transform player;
+    public float Distance = 0.1f;
+    private Player p;
 
     void Start()
     {
@@ -130,7 +130,7 @@ public class Oven : MonoBehaviour
 
     void Update()
     {
-        //if (LookingAtObject())
+        if (LookingAtObject())
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -165,9 +165,24 @@ public class Oven : MonoBehaviour
         return true;
     }
 
-    /*public bool LookingAtObject()
+    public bool LookingAtObject()
     {
-        Vector2 dirToPlayer = player.position - transform.position;
+        if (p == null)
+        {
+            p = GameManager.Instance.player;
+        }
+        float dist = Vector2.Distance(p.transform.position, transform.position);
+
+        if (dist <= 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+        /*Vector2 dirToPlayer = player.position - transform.position;
         dirToPlayer.Normalize();
 
         Ray ray = new Ray(transform.position, dirToPlayer);
@@ -178,6 +193,6 @@ public class Oven : MonoBehaviour
             return hit.transform == player;
         }
 
-        return false;
-    }*/
+        return false;*/
+    }
 }
