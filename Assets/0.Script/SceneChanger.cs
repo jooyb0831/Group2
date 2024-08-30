@@ -56,16 +56,16 @@ public class SceneChanger : Singleton<SceneChanger>
 
     public void GoHome()
     {
-        if(p == null)
+
+        StartCoroutine("FadeScreen");
+        SceneManager.LoadScene("InHouse");
+        if (p == null)
         {
             p = GameManager.Instance.player;
         }
-        StartCoroutine("FadeScreen");
-        SceneManager.LoadScene("InHouse");
         p.transform.position = new Vector2(0, -3.3f);
         screenType = ScreenType.House;
         //p.transform.position = afterPos;
-        SceneManager.LoadScene("InHouse");
         ground.transform.position = new Vector2(100, 100);
 
         if (SceneManager.GetActiveScene().name == "GameUI")

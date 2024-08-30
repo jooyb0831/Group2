@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     }
 
     private SpriteAnimation sa;
-    public PlayerData data = new PlayerData();
+    public PlayerData data;
     [SerializeField] PlayerSprite playerSprite;
     [SerializeField] float speed;
     public Direction dir = Direction.Front;
@@ -53,16 +53,13 @@ public class Player : MonoBehaviour
     [SerializeField] private bool clampOnOff;
     void Start()
     {
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
+        data = GameManager.Instance.pData;
         sa = GetComponent<SpriteAnimation>();
         sa.SetSprite(playerSprite.FrontIdle, 0.2f, true);
         dir = Direction.Front;
         state = State.Idle;
         speed = data.Speed;
-        data.MAXHP = 50;
-        data.HP =data.MAXHP;
-        data.MAXSP = 45;
-        data.SP =data.MAXSP;
         
     }
 

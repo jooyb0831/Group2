@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class PlayerData
+public class PlayerData : MonoBehaviour
 {
     public string playerName { get; set; }
 
@@ -66,4 +66,13 @@ public class PlayerData
 
 
     public float Speed { get; set; } = 3f;
+
+    private void Start()
+    {
+        DontDestroyOnLoad(this);
+        MAXHP = 50;
+        HP = MAXHP;
+        MAXSP = 45;
+        SP = MAXSP;
+    }
 }

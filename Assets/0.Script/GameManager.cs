@@ -96,6 +96,19 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    private PlayerData pd;
+    public PlayerData pData
+    {
+        get
+        {
+            if (pd == null)
+            {
+                pd = FindAnyObjectByType<PlayerData>();
+            }
+            return pd;
+        }
+    }
+
     
     
     
