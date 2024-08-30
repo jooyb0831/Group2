@@ -12,6 +12,7 @@ public class SceneChanger : Singleton<SceneChanger>
     [SerializeField] GameObject blackScreen;
     [SerializeField] GameObject ground;
     private Player p;
+    public ScreenType screenType = ScreenType.Farm;
     public bool isFarm = true;
     void Start()
     {
@@ -32,6 +33,7 @@ public class SceneChanger : Singleton<SceneChanger>
 
         StartCoroutine("FadeScreen");
         SceneManager.LoadScene("Farm");
+        screenType = ScreenType.Farm;
         //isFarm = true;
         ground.transform.position = Vector3.zero;
         p.transform.position = new Vector2(6.48f, 1.2f);
@@ -61,6 +63,7 @@ public class SceneChanger : Singleton<SceneChanger>
         StartCoroutine("FadeScreen");
         SceneManager.LoadScene("InHouse");
         p.transform.position = new Vector2(0, -3.3f);
+        screenType = ScreenType.House;
         //p.transform.position = afterPos;
         SceneManager.LoadScene("InHouse");
         ground.transform.position = new Vector2(100, 100);
@@ -125,6 +128,7 @@ public class SceneChanger : Singleton<SceneChanger>
         StartCoroutine("FadeScreen");
         ground.transform.position = new Vector2(100, 100);
         SceneManager.LoadScene("Logging");
+        screenType = ScreenType.Forest;
         //ground.SetActive(false);
         if (SceneManager.GetActiveScene().name == "GameUI")
         {

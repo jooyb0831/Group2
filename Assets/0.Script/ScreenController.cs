@@ -3,8 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum ScreenType
+{
+    Farm,
+    House,
+    Diner,
+    Forest
+}
+
 public class ScreenController : MonoBehaviour
 {
+    [SerializeField] Player p;
+    [SerializeField] Transform pos;
     private void Awake()
     {
         var obj = FindObjectsOfType<ScreenController>();
@@ -30,4 +40,13 @@ public class ScreenController : MonoBehaviour
     {
         
     }
+
+    void Check()
+    {
+        if(SceneChanger.Instance.screenType.Equals(ScreenType.Farm))
+        {
+            GameObject pl = Instantiate(p.gameObject, pos);
+        }
+    }
+
 }

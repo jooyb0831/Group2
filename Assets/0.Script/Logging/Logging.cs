@@ -31,7 +31,6 @@ public class Logging : MonoBehaviour
         }
         else if (hit.collider.GetComponent<Tree>())
         {
-
             if (Input.GetMouseButtonDown(0))
             {
                 if(p.toolName.Equals("µµ³¢"))

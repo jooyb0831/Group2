@@ -50,7 +50,7 @@ public class SpriteAnimation : MonoBehaviour
             timer = 0f;
             index++;
 
-            if(index>=sprites.Count)
+            if(index>sprites.Count-1)
             {
                 index = 0;
             }
@@ -78,6 +78,7 @@ public class SpriteAnimation : MonoBehaviour
             index = 0;
             if (loop == false)
             {
+                //sprites.Clear();
                 if(transform.GetComponent<Player>())
                 {
                     if (p == null)
@@ -86,15 +87,24 @@ public class SpriteAnimation : MonoBehaviour
                     }
                     p.isWorking = false;
                 }
-
-
             }
             
         }
     }
 
+    void Init(List<Sprite> sprites, float delay, bool loop)
+    {
+        this.sprites.Clear();
+        index = 0;
+        this.sprites = sprites;
+        this.delay = delay;
+        this.loop = loop;
+    }
+
     public void SetSprite(List<Sprite> sprites, float delay, bool loop)
     {
+        //sprites.Clear();
+        //index = 0;
         if(sr == null)
         {
             sr.GetComponent<SpriteRenderer>();
@@ -102,6 +112,7 @@ public class SpriteAnimation : MonoBehaviour
         this.sprites = sprites;
         this.delay = delay;
         this.loop = loop;
+        //sr.sprite = sprites[0];
     }
 
     public void ReSprite()
