@@ -10,10 +10,17 @@ public class SceneChanger : Singleton<SceneChanger>
     public Vector2 beforePos;
     public Vector2 afterPos;
     [SerializeField] GameObject blackScreen;
+    [SerializeField] GameObject ground;
     private Player p;
+    public bool isFarm = true;
     void Start()
     {
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Update()
+    {
+        
     }
 
     public void GoFarm()
@@ -22,8 +29,11 @@ public class SceneChanger : Singleton<SceneChanger>
         {
             p = GameManager.Instance.player;
         }
+
         StartCoroutine("FadeScreen");
         SceneManager.LoadScene("Farm");
+        //isFarm = true;
+        ground.transform.position = Vector3.zero;
         p.transform.position = new Vector2(6.48f, 1.2f);
         //p.transform.position = beforePos;
         if (SceneManager.GetActiveScene().name == "GameUI")
@@ -53,8 +63,9 @@ public class SceneChanger : Singleton<SceneChanger>
         p.transform.position = new Vector2(0, -3.3f);
         //p.transform.position = afterPos;
         SceneManager.LoadScene("InHouse");
+        ground.transform.position = new Vector2(100, 100);
 
-        if(SceneManager.GetActiveScene().name == "GameUI")
+        if (SceneManager.GetActiveScene().name == "GameUI")
         {
             return;
         }
@@ -112,7 +123,9 @@ public class SceneChanger : Singleton<SceneChanger>
             p = GameManager.Instance.player;
         }
         StartCoroutine("FadeScreen");
+        ground.transform.position = new Vector2(100, 100);
         SceneManager.LoadScene("Logging");
+        //ground.SetActive(false);
         if (SceneManager.GetActiveScene().name == "GameUI")
         {
             return;

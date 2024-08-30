@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public abstract class FarmingGround : Singleton<FarmingGround>
 {
     public enum State
@@ -33,7 +34,7 @@ public abstract class FarmingGround : Singleton<FarmingGround>
     // Start is called before the first frame update
     void Start()
     {
-        foreach(var names in item)
+        foreach (var names in item)
         {
             seedName.Add(names.data.SeedTitle);
         }
@@ -50,6 +51,7 @@ public abstract class FarmingGround : Singleton<FarmingGround>
             return;
         }
         Plant();
+        
     }
 
 

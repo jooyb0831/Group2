@@ -52,6 +52,7 @@ public class WaterCanData : Singleton<WaterCanData>
 
     private void Start()
     {
+        DontDestroyOnLoad(this);
         maxWater = 50;
         curWater = 50;
     }

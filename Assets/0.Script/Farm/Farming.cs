@@ -69,6 +69,7 @@ public abstract class Farming : MonoBehaviour
         p = GameManager.Instance.player;
         ts = GameManager.Instance.timeSystem;
         sr = GetComponent<SpriteRenderer>();
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame

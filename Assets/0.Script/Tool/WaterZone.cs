@@ -21,7 +21,11 @@ public class WaterZone : MonoBehaviour
             p = GameManager.Instance.player;
             return;
         }
-        
+        if(waterData == null)
+        {
+            waterData = GameManager.Instance.waterCanData;
+            return;
+        }
         if(isPlace ==true)
         {
             if (Input.GetKeyDown(KeyCode.K))

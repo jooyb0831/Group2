@@ -22,6 +22,10 @@ public class TreeSpon : MonoBehaviour
     }
     void Start()
     {
+        if(ts == null)
+        {
+            ts = GameManager.Instance.timeSystem;
+        }
         //나무 스폰포인트 표시 스프라이트 끄기
         for (int i = 0;i < sponPoints.Length;i++)
         {
