@@ -52,7 +52,6 @@ public class StagePickUI : MonoBehaviour
                     break;
                 }
         }
-        SceneManager.LoadScene("VampSur");
-        SceneManager.LoadScene("VampSurUI", LoadSceneMode.Additive);
+        SceneChanger.Instance.GoVampSur();
     }
 }

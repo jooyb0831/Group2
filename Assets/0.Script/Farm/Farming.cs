@@ -132,6 +132,10 @@ public abstract class Farming : MonoBehaviour
     
     void Harvest()
     {
+        if(SceneChanger.Instance.screenType.Equals(ScreenType. StagePick) || SceneChanger.Instance.screenType.Equals(ScreenType. VampSur))
+        {
+            return;
+        }
         Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero, 0f);
         if (p == null)

@@ -6,6 +6,10 @@ using TMPro;
 
 public class GameUI : Singleton<GameUI>
 {
+    [SerializeField] GameObject timeUI;
+    [SerializeField] GameObject hpUI;
+    [SerializeField] GameObject spUI;
+    [SerializeField] GameObject goldUI;
     [SerializeField] TMP_Text yyTxt;
     [SerializeField] TMP_Text mmTxt;
     [SerializeField] TMP_Text ddTxt;
@@ -41,7 +45,20 @@ public class GameUI : Singleton<GameUI>
     // Update is called once per frame
     void Update()
     {
-       
+       if(SceneChanger.Instance.screenType.Equals(ScreenType.StagePick) || SceneChanger.Instance.screenType.Equals(ScreenType.VampSur))
+       {
+            timeUI.SetActive(false);
+            hpUI.SetActive(false);
+            spUI.SetActive(false);
+            goldUI.SetActive(false);
+       }
+       else
+       {
+            timeUI.SetActive(true);
+            hpUI.SetActive(true);
+            spUI.SetActive(true);
+            goldUI.SetActive(true);
+       }
     }
 
     

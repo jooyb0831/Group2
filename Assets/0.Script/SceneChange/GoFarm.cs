@@ -32,4 +32,9 @@ public class GoFarm : MonoBehaviour
 
         }
     }
+
+    public void OnBackBtn()
+    {
+        SceneChanger.Instance.GoFarm();
+    }
 }

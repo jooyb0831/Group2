@@ -735,6 +735,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30be21a66b5870b46b825f0f2e0e700e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeUI: {fileID: 1249057333}
+  hpUI: {fileID: 1024216208}
+  spUI: {fileID: 937046226}
+  goldUI: {fileID: 1265157436}
   yyTxt: {fileID: 687096702}
   mmTxt: {fileID: 1352023869}
   ddTxt: {fileID: 1180354669}

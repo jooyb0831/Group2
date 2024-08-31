@@ -22,6 +22,8 @@ public class VSUI : Singleton<VSUI>
     {
         p = GameManager.Instance.player;
         maxHp = p.data.MAXHP;
+        hp = p.data.HP;
+        hpBar.fillAmount = (float)hp / (float)maxHp;
     }
 
     // Update is called once per frame

@@ -65,6 +65,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if(data == null)
+        {
+            data = GameManager.Instance.pData;
+            return;
+        }
         if(Input.GetKeyDown(KeyCode.Y))
         {
             Debug.Log($"HP : {data.HP}");

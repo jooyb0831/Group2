@@ -44,6 +44,10 @@ public class TimeSystem : MonoBehaviour
         set
         {
             minute = value;
+            if(SceneChanger.Instance.screenType.Equals(ScreenType.VampSur) || SceneChanger.Instance.screenType.Equals(ScreenType.StagePick))
+            {
+                return;
+            }
             GameUI.Instance.Minute = minute;
         }
     }
@@ -55,6 +59,10 @@ public class TimeSystem : MonoBehaviour
         set
         {
             hour = value;
+            if (SceneChanger.Instance.screenType.Equals(ScreenType.VampSur) || SceneChanger.Instance.screenType.Equals(ScreenType.StagePick))
+            {
+                return;
+            }
             GameUI.Instance.Hour = hour;
         }
     }

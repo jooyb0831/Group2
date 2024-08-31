@@ -8,7 +8,9 @@ public enum ScreenType
     Farm,
     House,
     Diner,
-    Forest
+    Forest,
+    StagePick,
+    VampSur
 }
 
 public class ScreenController : MonoBehaviour

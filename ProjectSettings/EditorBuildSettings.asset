@@ -29,4 +29,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/9.Scene/Furniture/Refrigerator.unity
     guid: 15156dfdfe3f54e4c9ee1a39818635de
+  - enabled: 1
+    path: Assets/9.Scene/StagePick.unity
+    guid: 4bb8ab886b569aa4e8642e059166cd43
+  - enabled: 1
+    path: Assets/9.Scene/VampSur.unity
+    guid: 6e31691440bff534fb9cb3b8e71e573d
+  - enabled: 1
+    path: Assets/9.Scene/VampSurUI.unity
+    guid: 112159fc3b6c0a54183d17ad528003f3
   m_configObjects: {}
