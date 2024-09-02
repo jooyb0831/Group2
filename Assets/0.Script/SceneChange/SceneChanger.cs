@@ -11,8 +11,10 @@ public class SceneChanger : Singleton<SceneChanger>
     public Vector2 afterPos;
     [SerializeField] GameObject blackScreen;
     [SerializeField] GameObject ground;
-    private Player p;
+    [SerializeField] Player p;
     public ScreenType screenType = ScreenType.Farm;
+
+    public ScreenType beforeScreen;
     public bool isFarm = true;
     void Start()
     {
@@ -21,18 +23,19 @@ public class SceneChanger : Singleton<SceneChanger>
 
     private void Update()
     {
-        
+        if(p == null)
+        {
+            p = GameManager.Instance.player;
+            return;
+        }
     }
 
     public void GoFarm()
     {
-        if(p == null)
-        {
-            p = GameManager.Instance.player;
-        }
 
         StartCoroutine("FadeScreen");
         SceneManager.LoadScene("Farm");
+        p = GameManager.Instance.player;
         screenType = ScreenType.Farm;
         //isFarm = true;
         ground.transform.position = Vector3.zero;
@@ -62,15 +65,11 @@ public class SceneChanger : Singleton<SceneChanger>
 
         StartCoroutine("FadeScreen");
         SceneManager.LoadScene("InHouse");
-        if (p == null)
-        {
-            p = GameManager.Instance.player;
-        }
-        p.transform.position = new Vector2(0, -3.3f);
-        screenType = ScreenType.House;
-        //p.transform.position = afterPos;
-        ground.transform.position = new Vector2(100, 100);
         SceneManager.LoadScene("GameUI", LoadSceneMode.Additive);
+        screenType = ScreenType.House;
+        
+        ground.transform.position = new Vector2(100, 100);
+        
         /*
         if (SceneManager.GetActiveScene().name == "GameUI")
         {
@@ -150,7 +149,7 @@ public class SceneChanger : Singleton<SceneChanger>
     public void GoVampSur()
     {
         SceneManager.LoadScene("VampSur");
-        //SceneManager.LoadScene("GameUI", LoadSceneMode.Additive);
+        SceneManager.LoadScene("GameUI", LoadSceneMode.Additive);
         SceneManager.LoadScene("VampSurUI", LoadSceneMode.Additive);
         screenType = ScreenType.VampSur;
     }
@@ -160,8 +159,16 @@ public class SceneChanger : Singleton<SceneChanger>
         StartCoroutine("FadeScreen");
         ground.transform.position = new Vector2(100, 100);
         SceneManager.LoadScene("StagePick");
-        //SceneManager.LoadScene("GameUI", LoadSceneMode.Additive);
+        SceneManager.LoadScene("GameUI", LoadSceneMode.Additive);
         screenType = ScreenType.StagePick;
+    }
+
+    public void Sleep()
+    {
+        StartCoroutine("FadeScreen");
+        SceneManager.LoadScene("ChangeDate");
+        SceneManager.LoadScene("GameUI", LoadSceneMode.Additive);
+        screenType = ScreenType.ChangeDate;
     }
 
     IEnumerator FadeScreen()

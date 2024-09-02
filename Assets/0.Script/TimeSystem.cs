@@ -73,7 +73,7 @@ public class TimeSystem : MonoBehaviour
     private float realTimer = 5f;
     public int today=1;
     public float sumTimer;
-
+    private PlayerData pd;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -91,6 +91,7 @@ public class TimeSystem : MonoBehaviour
     void Start()
     {
         today = Date;
+        pd = GameManager.Instance.pData;
     }
 
     // Update is called once per frame
@@ -178,7 +179,7 @@ public class TimeSystem : MonoBehaviour
         }
     }
 
-    void Sleep()
+    public void Sleep()
     {
         if(Hour>=6 && Hour<=23)
         {
@@ -199,6 +200,8 @@ public class TimeSystem : MonoBehaviour
         Debug.Log($"{today}ÀÏÂ°");
         timer = 0;
         sumTimer = 0;
+        pd.HP = pd.MAXHP;
+        pd.SP = pd.MAXSP;
         ResetGround();
     }
 

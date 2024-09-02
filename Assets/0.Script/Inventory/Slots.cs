@@ -9,7 +9,8 @@ public class Slots : MonoBehaviour
 
     private void Update()
     {
-        if(transform.childCount == 1)
+        
+        if(transform.childCount >= 1)
         {
             isFilled = true;
         }

@@ -2418,6 +2418,7 @@ MonoBehaviour:
   spBarImg: {fileID: 1985710531}
   goldTxt: {fileID: 1571623355}
   pd: {fileID: 0}
+  canvas: {fileID: 1933595344}
 --- !u!4 &556677495
 Transform:
   m_ObjectHideFlags: 0
@@ -2431,7 +2432,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &565916713
 GameObject:
@@ -9406,7 +9407,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -9432,7 +9432,7 @@ RectTransform:
   - {fileID: 792429449}
   - {fileID: 8781889362400569227}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

@@ -29,6 +29,7 @@ public class OutDoor : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                SceneChanger.Instance.beforeScreen = ScreenType.Farm;
                 SceneChanger.Instance.GoHome();
                 //StartCoroutine(FadeScreen());
             }

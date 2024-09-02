@@ -34,6 +34,7 @@ public class InventoryUI : Singleton<InventoryUI>
         SetInventorySlot();
         SetInventory();
         SetQuickInven();
+        InventoryCheck();
     }
 
     // Update is called once per frame
@@ -41,8 +42,12 @@ public class InventoryUI : Singleton<InventoryUI>
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            inventoryWindow.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-            inventoryWindow.SetActive(true);
+            if(SceneChanger.Instance.screenType!=ScreenType.VampSur || SceneChanger.Instance.screenType!=ScreenType.StagePick)
+            {
+                inventoryWindow.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                inventoryWindow.SetActive(true);
+            }
+
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) && inventoryWindow.activeSelf == true)
@@ -182,5 +187,25 @@ public class InventoryUI : Singleton<InventoryUI>
             }
         }
         return item;
+    }
+
+    void InventoryCheck()
+    {
+        foreach(var item in slots)
+        {
+            if(item.childCount>=1)
+            {
+                item.GetComponent<Slots>().isFilled = true;
+            }
+        }
+
+        foreach(var item in quickSlots)
+        {
+            if (item.childCount >= 1)
+            {
+                item.GetComponent<QuickSlots>().isFilled = true;
+                item.GetComponent<QuickSlots>().lowSlot.GetComponent<QuickSlotsinGame>().isFilled = true;
+            }
+        }
     }
 }

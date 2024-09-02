@@ -33,6 +33,7 @@ public class InDoor : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                SceneChanger.Instance.beforeScreen = ScreenType.House;
                 SceneChanger.Instance.GoFarm();
                 //StartCoroutine(FadeScreen());
             }

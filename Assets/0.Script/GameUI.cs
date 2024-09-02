@@ -27,6 +27,7 @@ public class GameUI : Singleton<GameUI>
 
     [SerializeField] PlayerData pd;
 
+    [SerializeField] GameObject canvas;
     // Start is called before the first frame update
     
 
@@ -34,7 +35,7 @@ public class GameUI : Singleton<GameUI>
     void Start()
     {
         ts = GameManager.Instance.timeSystem;
-        pd = GameManager.Instance.player.data;
+        pd = GameManager.Instance.pData;
         yyTxt.text = $"{ts.Year}³â";
         mmTxt.text = $"{ts.Month:00}¿ù";
         ddTxt.text = $"{ts.Date:00}ÀÏ";
@@ -50,20 +51,26 @@ public class GameUI : Singleton<GameUI>
     // Update is called once per frame
     void Update()
     {
-       if(SceneChanger.Instance.screenType.Equals(ScreenType.StagePick) || SceneChanger.Instance.screenType.Equals(ScreenType.VampSur))
+       if(SceneChanger.Instance.screenType.Equals(ScreenType.StagePick) || SceneChanger.Instance.screenType.Equals(ScreenType.VampSur) || SceneChanger.Instance.screenType.Equals(ScreenType.ChangeDate))
        {
+            canvas.SetActive(false);
+            /*
             timeUI.SetActive(false);
             hpUI.SetActive(false);
             spUI.SetActive(false);
             goldUI.SetActive(false);
+            */
        }
        else
        {
+            canvas.SetActive(true);
+            /*
             timeUI.SetActive(true);
             hpUI.SetActive(true);
             spUI.SetActive(true);
             goldUI.SetActive(true);
-       }
+            */
+        }
     }
 
     

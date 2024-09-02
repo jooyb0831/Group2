@@ -14,10 +14,12 @@ public class Bed : MonoBehaviour
 
     public TextMeshProUGUI subtitleTxt;
     public float Distance = 1f;
-    public Transform player;
+    private Player p;
 
+    [SerializeField] GameObject sleepMessageWindow;
     private void Start()
     {
+        /*
         if (bedPosition == null)
         {
             bedPosition = GameObject.Find("Bed").transform;
@@ -32,6 +34,7 @@ public class Bed : MonoBehaviour
         {
             screenFader = GameObject.Find("Fade").GetComponent<CanvasGroup>();
         }
+        */
     }
 
     private void Update()
@@ -47,6 +50,21 @@ public class Bed : MonoBehaviour
 
     private bool LookingAtObject()
     {
+        if(p == null)
+        {
+            p = GameManager.Instance.player;
+        }
+        float dist = Vector2.Distance(p.transform.position, transform.position);
+
+        if(dist<1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        /*
         Vector2 dirToPlayer = player.position - transform.position;
         dirToPlayer.Normalize();
 
@@ -59,12 +77,12 @@ public class Bed : MonoBehaviour
         }
 
         return false;
+        */
     }
 
     private void Interact()
     {
-        subtitleTxt.text = "휴식을 취하시겠습니까?";
-        SceneChanger.Instance.ToSleep();
+        sleepMessageWindow.SetActive(true);
     }
 
     private IEnumerator FadeScreen()
@@ -80,16 +98,16 @@ public class Bed : MonoBehaviour
         }
     }
 
+    
     public void OnYesClicked()
     {
-        selectPanel.SetActive(false);
-        player.transform.position = bedPosition.position;
-        StartCoroutine(FadeScreen());
+        SceneChanger.Instance.Sleep();
         //TimeSystem
     }
-
+    
     public void OnNoCliked()
     {
-        selectPanel.SetActive(false);
+        sleepMessageWindow.SetActive(false);
     }
+    
 }

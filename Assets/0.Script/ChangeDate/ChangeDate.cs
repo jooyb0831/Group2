@@ -7,6 +7,7 @@ public class ChangeDate : MonoBehaviour
     [SerializeField] private TMP_Text sleepTxt;
     [SerializeField] private TMP_Text tipsTxt;
 
+    [SerializeField] TimeSystem ts;
     private float timer;
     private string[] sleepStr = { "잠자는중", "잠자는중.", "잠자는중..", "잠자는중..." };
     private string[] tips = 
@@ -23,6 +24,7 @@ public class ChangeDate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ts = GameManager.Instance.timeSystem;
         timer = 0;
         tipsTxt.text = $"{tips[Random.Range(0, tips.Length)]}";
         Invoke("NextDay", 5);
@@ -43,8 +45,13 @@ public class ChangeDate : MonoBehaviour
             timer = 0;
         }
     }
+
+
     void NextDay()
     {
+        ts.Sleep();
+        SceneChanger.Instance.beforeScreen = ScreenType.ChangeDate;
+        SceneChanger.Instance.GoHome();
         Debug.Log("다음날"); //<- 이거 지우고 씬 불러오는 함수 넣기
     }
 }

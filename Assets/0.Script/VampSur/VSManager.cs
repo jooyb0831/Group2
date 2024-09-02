@@ -14,6 +14,7 @@ public class VSManager : MonoBehaviour
     {
         dpBool = false;
         VSDefine.killCut = 0;
+        VSDefine.gameState = VSDefine.GameState.play;
     }
 
     // Update is called once per frame

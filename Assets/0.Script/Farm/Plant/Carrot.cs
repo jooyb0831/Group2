@@ -15,7 +15,6 @@ public class Carrot : Farming
     {
         data.PlantTitle = "´ç±Ù";
         data.SeedTitle = "´ç±Ù¾¾¾Ñ";
-
         data.Harvest_Time = 720f;
         base.Init();
     }

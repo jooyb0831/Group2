@@ -76,7 +76,7 @@ public abstract class Farming : MonoBehaviour
     void Update()
     {
         Grow();
-        if (SceneChanger.Instance.screenType.Equals(ScreenType.StagePick) || SceneChanger.Instance.screenType.Equals(ScreenType.VampSur))
+        if (SceneChanger.Instance.screenType.Equals(ScreenType.StagePick) || SceneChanger.Instance.screenType.Equals(ScreenType.VampSur) || SceneChanger.Instance.screenType.Equals(ScreenType.ChangeDate))
         {
             return;
         }

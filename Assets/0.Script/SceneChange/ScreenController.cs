@@ -10,7 +10,8 @@ public enum ScreenType
     Diner,
     Forest,
     StagePick,
-    VampSur
+    VampSur,
+    ChangeDate
 }
 
 public class ScreenController : MonoBehaviour
