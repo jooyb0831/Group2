@@ -8,7 +8,10 @@ public class Logging : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (p == null)
+        {
+            p = GameManager.Instance.player;
+        }
     }
 
     // Update is called once per frame
@@ -33,6 +36,7 @@ public class Logging : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                
                 if(p.toolName.Equals("µµ³¢"))
                 {
                     if(p.data.SP<2)

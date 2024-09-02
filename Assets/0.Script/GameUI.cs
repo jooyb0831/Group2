@@ -25,8 +25,12 @@ public class GameUI : Singleton<GameUI>
 
     [SerializeField] TMP_Text goldTxt;
 
-    private PlayerData pd;
+    [SerializeField] PlayerData pd;
+
     // Start is called before the first frame update
+    
+
+    
     void Start()
     {
         ts = GameManager.Instance.timeSystem;
@@ -36,10 +40,11 @@ public class GameUI : Singleton<GameUI>
         ddTxt.text = $"{ts.Date:00}¿œ";
         minTxt.text = $"{ts.Minute:00}";
         hhTxt.text = $"{ts.Hour:00}";
+        goldTxt.text = $"{pd.Gold.ToString("#,##0")}";
 
         hpBarImg.fillAmount = (float)((float)pd.HP / (float)pd.MAXHP);
         spBarImg.fillAmount = (float)((float)pd.SP / (float)pd.MAXSP);
-        goldTxt.text = $"{pd.Gold.ToString("#,##0")}";
+
     }
 
     // Update is called once per frame

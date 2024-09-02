@@ -70,7 +70,8 @@ public class SceneChanger : Singleton<SceneChanger>
         screenType = ScreenType.House;
         //p.transform.position = afterPos;
         ground.transform.position = new Vector2(100, 100);
-
+        SceneManager.LoadScene("GameUI", LoadSceneMode.Additive);
+        /*
         if (SceneManager.GetActiveScene().name == "GameUI")
         {
             return;
@@ -79,6 +80,7 @@ public class SceneChanger : Singleton<SceneChanger>
         {
             SceneManager.LoadScene("GameUI", LoadSceneMode.Additive);
         }
+        */
     }
 
     public void GoRestaurant()
@@ -93,14 +95,7 @@ public class SceneChanger : Singleton<SceneChanger>
         p.transform.position = new Vector2(0, -3.3f);
         screenType = ScreenType.Diner;
         ground.transform.position = new Vector2(100, 100);
-        if (SceneManager.GetActiveScene().name == "GameUI")
-        {
-            return;
-        }
-        else
-        {
-            SceneManager.LoadScene("GameUI", LoadSceneMode.Additive);
-        }
+        SceneManager.LoadScene("GameUI", LoadSceneMode.Additive);
     }
 
     public void OnDialogue()
@@ -149,14 +144,7 @@ public class SceneChanger : Singleton<SceneChanger>
         SceneManager.LoadScene("Logging");
         screenType = ScreenType.Forest;
         //ground.SetActive(false);
-        if (SceneManager.GetActiveScene().name == "GameUI")
-        {
-            return;
-        }
-        else
-        {
-            SceneManager.LoadScene("GameUI", LoadSceneMode.Additive);
-        }
+        SceneManager.LoadScene("GameUI", LoadSceneMode.Additive);
     }
 
     public void GoVampSur()
@@ -185,4 +173,5 @@ public class SceneChanger : Singleton<SceneChanger>
         transform.GetChild(0).gameObject.SetActive(false);
         Destroy(obj);
     }
+
 }

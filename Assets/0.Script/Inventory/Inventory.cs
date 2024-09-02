@@ -15,6 +15,9 @@ public class InvenData
     public int plusEnergy;
     public int price;
     public int number;
+    public int slotIndexNum;
+    public bool isQuickSlot;
+    public int quickIndexNum;
 }
 public enum ItemType
 {
@@ -25,18 +28,23 @@ public enum ItemType
     Food,
     Etc
 }
+public class InventoryData
+{
+    public List<InvenItem> items = new List<InvenItem>();
+}
 public class Inventory : Singleton<Inventory>
 {
     [SerializeField] InvenItem invenItem;
     [SerializeField] InvenItem waterCanInvenItem;
     [SerializeField] InvenItem axeInvenItem;
-    [SerializeField] Transform[] invenSlots;
-    [SerializeField] Transform[] quickSlots;
+    public Transform[] invenSlots;
+    public Transform[] quickSlots;
 
-    [SerializeField] GameObject inventoryWindow;
+    public InventoryData inventoryData = new InventoryData();
 
-    private List<InvenItem> invenItems = new List<InvenItem>();  // 인벤토리 데이터 받는 리스트.
+    public List<InvenItem> invenItems = new List<InvenItem>();  // 인벤토리 데이터 받는 리스트.
     private List<string> invenItemNameList = new List<string>();
+    public List<InvenData> invenDatas = new List<InvenData>();
 
     private Player p;
 
@@ -52,21 +60,12 @@ public class Inventory : Singleton<Inventory>
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            inventoryWindow.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-            inventoryWindow.SetActive(true);
-        }
         if (Input.GetKeyDown(KeyCode.F5))
         {
             foreach (var item in invenItems)
             {
                 Debug.Log($"{item.GetComponent<InvenItem>().data.title}");
             }
-        }
-        if(Input.GetKeyDown(KeyCode.Escape) && inventoryWindow.activeSelf == true)
-        {
-            inventoryWindow.SetActive(false);
         }
     }
 
@@ -119,9 +118,13 @@ public class Inventory : Singleton<Inventory>
         data.plusEnergy = itemData.plusEnergy;
         data.price = itemData.price;
         data.number = orderNum;
+        data.slotIndexNum = index;
+        data.isQuickSlot = false;
         item.SetData(data);
         item.SetInventory(this);
         invenItems.Add(item);
+        invenDatas.Add(item.data);
+        inventoryData.items.Add(item);
         orderNum++;
     }
 
@@ -157,7 +160,7 @@ public class Inventory : Singleton<Inventory>
 
         if (invenItem.transform.parent.GetComponent<QuickSlots>() == true)
         {
-            Transform qs = invenItem.transform.parent.GetComponent<QuickSlots>().slot;
+            Transform qs = invenItem.transform.parent.GetComponent<QuickSlots>().lowSlot;
             QuickInventory.Instance.ItemCount(qs.GetChild(0).GetComponent<QuickInvenItem>(), invenItem);
             //qs.GetChild(0).GetChild(1).GetChild(0).GetComponent<TMP_Text>().text = $"{invenItem.data.count}";
         }
@@ -180,13 +183,13 @@ public class Inventory : Singleton<Inventory>
 
         if (invenItem.transform.parent.GetComponent<QuickSlots>() == true)
         {
-            Transform qs = invenItem.transform.parent.GetComponent<QuickSlots>().slot;
+            Transform qs = invenItem.transform.parent.GetComponent<QuickSlots>().lowSlot;
             QuickInventory.Instance.ItemCount(qs.GetChild(0).GetComponent<QuickInvenItem>(), invenItem);
             //qs.GetChild(0).GetChild(1).GetChild(0).GetComponent<TMP_Text>().text = $"{invenItem.data.count}";
         }
     }
 
-    [SerializeField] MoveItem moveItem;
+    public MoveItem moveItem;
     public void ItemMove(bool isShow, Vector3 pos, InvenData data = null)
     {
         if (data != null)
@@ -229,8 +232,8 @@ public class Inventory : Singleton<Inventory>
             if (item.transform.parent.GetComponent<QuickSlots>() == true)
             {
                 item.transform.parent.GetComponent<QuickSlots>().isFilled = false;
-                item.transform.parent.GetComponent<QuickSlots>().slot.GetComponent<QuickSlotsinGame>().isFilled = false;
-                QuickInventory.Instance.Delete(item.transform.parent.GetComponent<QuickSlots>().slot.GetChild(0).GetComponent<QuickInvenItem>());
+                item.transform.parent.GetComponent<QuickSlots>().lowSlot.GetComponent<QuickSlotsinGame>().isFilled = false;
+                QuickInventory.Instance.Delete(item.transform.parent.GetComponent<QuickSlots>().lowSlot.GetChild(0).GetComponent<QuickInvenItem>());
             }
             DeleteItem(item);
             Destroy(item.gameObject);
@@ -241,7 +244,7 @@ public class Inventory : Singleton<Inventory>
 
             if (item.transform.parent.GetComponent<QuickSlots>() == true)
             {
-                Transform qs = item.transform.parent.GetComponent<QuickSlots>().slot;
+                Transform qs = item.transform.parent.GetComponent<QuickSlots>().lowSlot;
                 QuickInventory.Instance.ItemCount(qs.GetChild(0).GetComponent<QuickInvenItem>(), item);
 
                 //qs.GetChild(0).GetChild(1).GetChild(0).GetComponent<TMP_Text>().text = $"{item.data.count}";
@@ -257,7 +260,7 @@ public class Inventory : Singleton<Inventory>
             if (item.transform.parent.GetComponent<QuickSlots>() == true)
             {
                 item.transform.parent.GetComponent<QuickSlots>().isFilled = false;
-                QuickInventory.Instance.Delete(item.transform.parent.GetComponent<QuickSlots>().slot.GetChild(0).GetComponent<QuickInvenItem>());
+                QuickInventory.Instance.Delete(item.transform.parent.GetComponent<QuickSlots>().lowSlot.GetChild(0).GetComponent<QuickInvenItem>());
             }
             DeleteItem(item);
             Destroy(item.gameObject);
@@ -268,7 +271,7 @@ public class Inventory : Singleton<Inventory>
 
             if (item.transform.parent.GetComponent<QuickSlots>() == true)
             {
-                Transform qs = item.transform.parent.GetComponent<QuickSlots>().slot;
+                Transform qs = item.transform.parent.GetComponent<QuickSlots>().lowSlot;
                 QuickInventory.Instance.ItemCount(qs.GetChild(0).GetComponent<QuickInvenItem>(), item);
 
                 //qs.GetChild(0).GetChild(1).GetChild(0).GetComponent<TMP_Text>().text = $"{item.data.count}";
@@ -281,8 +284,8 @@ public class Inventory : Singleton<Inventory>
         if (item.transform.parent.GetComponent<QuickSlots>() == true)
         {
             item.transform.parent.GetComponent<QuickSlots>().isFilled = false;
-            item.transform.parent.GetComponent<QuickSlots>().slot.GetComponent<QuickSlotsinGame>().isFilled = false;
-            QuickInventory.Instance.Delete(item.transform.parent.GetComponent<QuickSlots>().slot.GetChild(0).GetComponent<QuickInvenItem>());
+            item.transform.parent.GetComponent<QuickSlots>().lowSlot.GetComponent<QuickSlotsinGame>().isFilled = false;
+            QuickInventory.Instance.Delete(item.transform.parent.GetComponent<QuickSlots>().lowSlot.GetChild(0).GetComponent<QuickInvenItem>());
         }
         if (item.transform.parent.GetComponent<Slots>() == true)
         {
@@ -318,6 +321,25 @@ public class Inventory : Singleton<Inventory>
             {
                 //invenItems[i].data = null;
                 invenItems.RemoveAt(i);
+                break;
+            }
+        }
+
+        for (int i = 0; i < inventoryData.items.Count; i++)
+        {
+            if (inventoryData.items[i].data.number.Equals(item.data.number))
+            {
+                //invenItems[i].data = null;
+                inventoryData.items.RemoveAt(i);
+                break;
+            }
+        }
+
+        for(int i = 0; i< invenDatas.Count; i++)
+        {
+            if(invenDatas[i].number == item.data.number)
+            {
+                invenDatas.RemoveAt(i);
                 break;
             }
         }
@@ -371,7 +393,7 @@ public class Inventory : Singleton<Inventory>
             }
         }
     }
-
+    
     [SerializeField] GameObject sellItemWindow;
     public void SellItem(InvenItem item)
     {
@@ -387,7 +409,7 @@ public class Inventory : Singleton<Inventory>
         }
         else
         {
-            GameObject window = Instantiate(sellItemWindow, inventoryWindow.transform);
+            GameObject window = Instantiate(sellItemWindow, InventoryUI.Instance.inventoryWindow.transform);
             window.GetComponent<ItemSellWindow>().SellItem(item);
         }
         /*
@@ -400,7 +422,7 @@ public class Inventory : Singleton<Inventory>
     [SerializeField] GameObject divideItemWindow;
     public void DivideItem(InvenItem item)
     {
-        GameObject window = Instantiate(divideItemWindow, inventoryWindow.transform);
+        GameObject window = Instantiate(divideItemWindow, InventoryUI.Instance.inventoryWindow.transform);
         window.GetComponent<ItemDivideWindow>().DivideItem(item);
     }
 
@@ -450,8 +472,8 @@ public class Inventory : Singleton<Inventory>
         if(item.transform.parent.GetComponent<QuickSlots>()==true)
         {
             item.transform.parent.GetComponent<QuickSlots>().isFilled = false;
-            item.transform.parent.GetComponent<QuickSlots>().slot.GetComponent<QuickSlotsinGame>().isFilled = false;
-            QuickInventory.Instance.Delete(item.transform.parent.GetComponent<QuickSlots>().slot.GetChild(0).GetComponent<QuickInvenItem>());
+            item.transform.parent.GetComponent<QuickSlots>().lowSlot.GetComponent<QuickSlotsinGame>().isFilled = false;
+            QuickInventory.Instance.Delete(item.transform.parent.GetComponent<QuickSlots>().lowSlot.GetChild(0).GetComponent<QuickInvenItem>());
         }
         DeleteItem(item);
         Destroy(item.gameObject);
@@ -506,9 +528,12 @@ public class Inventory : Singleton<Inventory>
         data.plusEnergy = inItem.data.plusEnergy;
         data.price = inItem.data.price;
         data.number = orderNum;
+        data.slotIndexNum = index;
+        data.isQuickSlot = false;
         item.SetData(data);
         item.SetInventory(this);
         invenItems.Add(item);
+        inventoryData.items.Add(item);
         orderNum++;
     }
 
@@ -563,12 +588,12 @@ public class Inventory : Singleton<Inventory>
 
     public void SetToolItem(InvenItem item)
     {
-        QuickInventory.Instance.GetItem(item, quickSlots[QuickSlotCheck()].GetComponent<QuickSlots>().slot);
+        QuickInventory.Instance.GetItem(item, quickSlots[QuickSlotCheck()].GetComponent<QuickSlots>().lowSlot);
         item.transform.parent.GetComponent<Slots>().isFilled = false;
         item.transform.position = quickSlots[QuickSlotCheck()].transform.position;
         item.transform.SetParent(quickSlots[QuickSlotCheck()].transform);
         item.transform.parent.GetComponent<QuickSlots>().isFilled = true;
-        item.transform.parent.GetComponent<QuickSlots>().slot.GetChild(0).GetComponent<Toggle>().isOn = true;
+        item.transform.parent.GetComponent<QuickSlots>().lowSlot.GetChild(0).GetComponent<Toggle>().isOn = true;
     }
 }
 

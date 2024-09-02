@@ -76,7 +76,15 @@ public abstract class Farming : MonoBehaviour
     void Update()
     {
         Grow();
-        Harvest();
+        if (SceneChanger.Instance.screenType.Equals(ScreenType.StagePick) || SceneChanger.Instance.screenType.Equals(ScreenType.VampSur))
+        {
+            return;
+        }
+        else
+        {
+            Harvest();
+        }
+        
         //Day();
     }
 
@@ -132,19 +140,17 @@ public abstract class Farming : MonoBehaviour
     
     void Harvest()
     {
-        if(SceneChanger.Instance.screenType.Equals(ScreenType. StagePick) || SceneChanger.Instance.screenType.Equals(ScreenType. VampSur))
-        {
-            return;
-        }
+
         Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero, 0f);
         if (p == null)
         {
             p = GameManager.Instance.player;
         }
+
         float dist = Vector2.Distance(transform.position, p.transform.position);
 
-        if(hit.collider == transform.parent.GetComponent<BoxCollider2D>() && dist<2D)
+        if(hit.collider == transform.parent.GetComponent<BoxCollider2D>() && dist<2)
         {
             statusWindow.SetActive(true);
         }

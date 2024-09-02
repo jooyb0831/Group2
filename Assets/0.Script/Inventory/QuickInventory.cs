@@ -12,6 +12,7 @@ public class QuickInvenData
     public ItemType type;
     public InvenItem invenItem;
     public int number;
+    public int index;
 }
 public class QuickInventory : Singleton<QuickInventory>
 {
@@ -19,7 +20,8 @@ public class QuickInventory : Singleton<QuickInventory>
     [SerializeField] QuickInvenItem quickWaterCanInvenItem;
     public Transform[] quickSlots;
     private Player p;
-    private List<QuickInvenItem> quickInvenItems = new List<QuickInvenItem>();
+    public List<QuickInvenItem> quickInvenItems = new List<QuickInvenItem>();
+    public List<QuickInvenData> qInvenDatas = new List<QuickInvenData>();
     private List<string> quickInvenItemNameList = new List<string>();
     private int orderNum = 0;
     //List<int> indexNums = new List<int>();
@@ -122,9 +124,11 @@ public class QuickInventory : Singleton<QuickInventory>
         data.count = item.data.count;
         data.invenItem = item;
         data.number = orderNum;
+        data.index = trans.GetComponent<QuickSlotsinGame>().index;
         quickItem.SetData(data);
         quickItem.SetInventory(this);
         quickInvenItems.Add(quickItem);
+        qInvenDatas.Add(data);
         quickItem.GetComponent<Toggle>().group = quickItem.transform.parent.parent.GetComponent<ToggleGroup>();
         quickItem.GetComponent<Toggle>().isOn = false;
         trans.GetComponent<QuickSlotsinGame>().isFilled = true;
@@ -195,6 +199,15 @@ public class QuickInventory : Singleton<QuickInventory>
                 break;
             }
         }
+
+        for(int i =0; i<qInvenDatas.Count; i++)
+        {
+            if(qInvenDatas[i].number == quickItem.data.number)
+            {
+                qInvenDatas.RemoveAt(i);
+                break;
+            }
+        }
         Destroy(quickItem.gameObject);
     }
 
@@ -207,7 +220,7 @@ public class QuickInventory : Singleton<QuickInventory>
             if(quickSlots[i].GetComponent<QuickSlotsinGame>().isFilled == false)
             {
                 index = i;
-                break; ;
+                break;
             }
         }
         return index;

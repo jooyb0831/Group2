@@ -67,7 +67,7 @@ public class PlayerData : MonoBehaviour
 
     public float Speed { get; set; } = 3f;
 
-    private void Start()
+    private void Awake()
     {
         DontDestroyOnLoad(this);
         MAXHP = 50;

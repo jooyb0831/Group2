@@ -24,7 +24,7 @@ public class ToolInvenOption : MonoBehaviour
 
         if(item.transform.parent.GetComponent<QuickSlots>()==true)
         {
-            item.transform.parent.GetComponent<QuickSlots>().slot.GetChild(0).GetComponent<Toggle>().isOn = true;
+            item.transform.parent.GetComponent<QuickSlots>().lowSlot.GetChild(0).GetComponent<Toggle>().isOn = true;
         }
         else
         {

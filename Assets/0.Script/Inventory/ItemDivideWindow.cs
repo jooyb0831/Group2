@@ -77,7 +77,7 @@ public class ItemDivideWindow : MonoBehaviour
         invenItem.AddData(invenItem.data);
         if(invenItem.transform.parent.GetComponent<QuickSlots>() == true)
         {
-            Transform qs = invenItem.transform.parent.GetComponent<QuickSlots>().slot;
+            Transform qs = invenItem.transform.parent.GetComponent<QuickSlots>().lowSlot;
             QuickInventory.Instance.ItemCount(qs.GetChild(0).GetComponent<QuickInvenItem>(), invenItem);
         }
         Inventory.Instance.ItemDivide(invenItem, inputCnt);

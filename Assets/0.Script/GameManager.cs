@@ -109,7 +109,58 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    
-    
-    
+    private Inventory inven;
+    public Inventory inventory
+    {
+        get
+        {
+            if(inven == null)
+            {
+                inven = FindAnyObjectByType<Inventory>();
+            }
+            return inven;
+        }
+
+    }
+
+    private QuickInventory quickInven;
+    public QuickInventory quickInventory
+    {
+        get
+        {
+            if(quickInven == null)
+            {
+                quickInven = FindAnyObjectByType<QuickInventory>();
+            }
+            return quickInven;
+        }
+    }
+
+    private InventoryUI invenUI;
+    public InventoryUI inventoryUI
+    {
+        get
+        {
+            if (invenUI == null)
+            {
+                invenUI = FindAnyObjectByType<InventoryUI>();
+            }
+            return invenUI;
+        }
+
+    }
+
+    private MoveItem mi;
+    public MoveItem moveItem
+    {
+        get
+        {
+            if(mi == null)
+            {
+                mi = FindAnyObjectByType<MoveItem>();
+            }
+            return mi;
+        }
+    }
+
 }

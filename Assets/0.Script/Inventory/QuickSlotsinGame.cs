@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class QuickSlotsinGame : MonoBehaviour
 {
     public bool isFilled = false;
+    public int index;
     // Start is called before the first frame update
     void Start()
     {
