@@ -21,11 +21,11 @@ EditorBuildSettings:
     path: Assets/9.Scene/Logging.unity
     guid: 06a43faa28a9e284a8497ecc44832ac7
   - enabled: 1
-    path: Assets/9.Scene/Furniture/MenuListUI.unity
-    guid: af99ba13cce0c31498cf029f43cc1fb6
-  - enabled: 1
     path: Assets/9.Scene/Furniture/Oven.unity
     guid: ab72591b0e0a88244be6369147dfb795
+  - enabled: 1
+    path: Assets/9.Scene/Furniture/MenuListUI.unity
+    guid: af99ba13cce0c31498cf029f43cc1fb6
   - enabled: 1
     path: Assets/9.Scene/Furniture/Refrigerator.unity
     guid: 15156dfdfe3f54e4c9ee1a39818635de
