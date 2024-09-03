@@ -51,7 +51,7 @@ public class GameUI : Singleton<GameUI>
     // Update is called once per frame
     void Update()
     {
-       if(SceneChanger.Instance.screenType.Equals(ScreenType.StagePick) || SceneChanger.Instance.screenType.Equals(ScreenType.VampSur) || SceneChanger.Instance.screenType.Equals(ScreenType.ChangeDate))
+       if(SceneChanger.Instance.screenType.Equals(ScreenType.StagePick) || SceneChanger.Instance.screenType.Equals(ScreenType.VampSur) || SceneChanger.Instance.screenType.Equals(ScreenType.ChangeDate)|| SceneChanger.Instance.screenType.Equals(ScreenType.QuestUI))
        {
             canvas.SetActive(false);
             /*

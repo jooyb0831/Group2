@@ -30,6 +30,17 @@ public class SceneChanger : Singleton<SceneChanger>
         }
     }
 
+    public void GoGame()
+    {
+        StartCoroutine("FadeScreen");
+        SceneManager.LoadScene("Farm");
+        p = GameManager.Instance.player;
+        screenType = ScreenType.Farm;
+        ground.transform.position = Vector3.zero;
+        SceneManager.LoadScene("GameUI", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Continuous", LoadSceneMode.Additive);
+    }
+
     public void GoFarm()
     {
 
@@ -62,12 +73,11 @@ public class SceneChanger : Singleton<SceneChanger>
 
     public void GoHome()
     {
-
+        screenType = ScreenType.House;
         StartCoroutine("FadeScreen");
         SceneManager.LoadScene("InHouse");
+        PlayerPosition.Instance.isSet = false;
         SceneManager.LoadScene("GameUI", LoadSceneMode.Additive);
-        screenType = ScreenType.House;
-        
         ground.transform.position = new Vector2(100, 100);
         
         /*
@@ -163,6 +173,13 @@ public class SceneChanger : Singleton<SceneChanger>
         screenType = ScreenType.StagePick;
     }
 
+     public void GoQuest()
+    {
+        SceneManager.LoadScene("QuestUI");
+        SceneManager.LoadScene("GameUI", LoadSceneMode.Additive);
+        screenType = ScreenType.QuestUI;
+    }
+
     public void Sleep()
     {
         StartCoroutine("FadeScreen");
@@ -171,9 +188,11 @@ public class SceneChanger : Singleton<SceneChanger>
         screenType = ScreenType.ChangeDate;
     }
 
+
     IEnumerator FadeScreen()
     {
         transform.GetChild(0).gameObject.SetActive(true);
+        //PlayerPosition.Instance.Check();
         GameObject obj = Instantiate(blackScreen, transform.GetChild(0));
         obj.GetComponent<Image>().DOFade(0, 2f);
         yield return new WaitForSeconds(2f);

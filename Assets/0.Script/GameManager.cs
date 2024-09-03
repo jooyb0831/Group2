@@ -163,4 +163,17 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    private ItemGetBG ibg;
+    public ItemGetBG itemGetBG
+    {
+        get
+        {
+            if(ibg == null)
+            {
+                ibg = FindAnyObjectByType<ItemGetBG>();
+            }
+            return ibg;
+        }
+    }
+
 }

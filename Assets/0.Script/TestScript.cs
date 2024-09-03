@@ -25,4 +25,12 @@ public class TestScript : MonoBehaviour
             Inventory.Instance.GetItem(axe.GetComponent<FieldItem>().itemData);
         }
     }
+
+    public void GiveItem()
+    {
+        Inventory.Instance.GetItem(watercan.GetComponent<FieldItem>().itemData);
+        Inventory.Instance.GetItem(cornSeed.GetComponent<FieldItem>().itemData);
+        Inventory.Instance.GetItem(carrotSeed.GetComponent<FieldItem>().itemData);
+        Inventory.Instance.GetItem(axe.GetComponent<FieldItem>().itemData);
+    }
 }

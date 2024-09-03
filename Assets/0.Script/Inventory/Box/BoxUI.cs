@@ -14,7 +14,7 @@ public class BoxUI : Singleton<BoxUI>
     // Start is called before the first frame update
     void Start()
     {
-        
+        inventory = GameManager.Instance.inventory.inventoryWindow;
     }
 
     // Update is called once per frame

@@ -12,7 +12,7 @@ public class AddBox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        DontDestroyOnLoad(this);
     }
     [SerializeField] Vector2 savePos = Vector2.zero;
     // Update is called once per frame

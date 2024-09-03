@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/9.Scene/GameUI.unity
     guid: 583caa2c0f10dfa4f9316a34530ed241
   - enabled: 1
+    path: Assets/9.Scene/Continuous.unity
+    guid: 4d77567cc7f13604185a737b3764a9ce
+  - enabled: 1
     path: Assets/9.Scene/InHouse.unity
     guid: ed328c3f73368814cad3b96539c4ac45
   - enabled: 1
@@ -38,4 +41,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/9.Scene/VampSurUI.unity
     guid: 112159fc3b6c0a54183d17ad528003f3
+  - enabled: 1
+    path: Assets/9.Scene/ChangeDate.unity
+    guid: 1b85fbe6eaac2bf41ae2637fd73cf5cd
+  - enabled: 1
+    path: Assets/9.Scene/QuestUI.unity
+    guid: 09bb8a377fb8c464e8359ad68af11a3b
   m_configObjects: {}

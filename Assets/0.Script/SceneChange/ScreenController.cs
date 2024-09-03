@@ -11,7 +11,8 @@ public enum ScreenType
     Forest,
     StagePick,
     VampSur,
-    ChangeDate
+    ChangeDate,
+    QuestUI
 }
 
 public class ScreenController : MonoBehaviour

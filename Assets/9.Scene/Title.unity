@@ -1740,7 +1740,7 @@ GameObject:
   - component: {fileID: 231461232}
   - component: {fileID: 231461231}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: YesBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1759,7 +1759,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1452952087}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1809,7 +1809,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 231461232}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1411532383}
+        m_TargetAssemblyTypeName: TitleUI, Assembly-CSharp
+        m_MethodName: GoGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &231461232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5508,6 +5520,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -15066,7 +15079,7 @@ MonoBehaviour:
   reconfirmWid: {fileID: 1452952088}
   refimWidTxt: {fileID: 1121961986}
   limLetter: {fileID: 897809828}
-  p: {fileID: 1970005665220259174}
+  pData: {fileID: 0}
   myName: 
 --- !u!4 &1411532384
 Transform:
@@ -15393,8 +15406,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1121961988}
-  - {fileID: 231461230}
   - {fileID: 2120131657}
+  - {fileID: 231461230}
   m_Father: {fileID: 524838789}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21273,7 +21286,7 @@ GameObject:
   - component: {fileID: 2120131659}
   - component: {fileID: 2120131658}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: ChangeBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21292,7 +21305,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1452952087}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -22144,6 +22157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80336ec8452d0c84e95cb45d383f279f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   playerSprite:
     FrontWalk:
     - {fileID: 21300000, guid: 8f92b2d912773479894490421de2bc04, type: 3}

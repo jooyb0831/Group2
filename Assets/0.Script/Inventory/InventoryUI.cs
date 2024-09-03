@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class InventoryUI : Singleton<InventoryUI>
 {
+    [SerializeField] TMP_Text nameTxt;
     [SerializeField] Transform[] slots;
     [SerializeField] Transform[] quickSlots;
     [SerializeField] Transform[] inQuickSlots;
@@ -19,6 +22,7 @@ public class InventoryUI : Singleton<InventoryUI>
     [SerializeField] QuickInvenItem quickInvenItem;
     [SerializeField] QuickInvenItem quickWaterCanInvenItem;
     [SerializeField] MoveItem moveitem;
+    [SerializeField] PlayerData pData;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +34,10 @@ public class InventoryUI : Singleton<InventoryUI>
         {
             quickInventory = GameManager.Instance.quickInventory;
         }
+        pData = GameManager.Instance.pData;
         inventory.moveItem = moveitem;
+        inventory.inventoryWindow = inventoryWindow;
+        nameTxt.text = pData.playerName;
         SetInventorySlot();
         SetInventory();
         SetQuickInven();
@@ -172,6 +179,8 @@ public class InventoryUI : Singleton<InventoryUI>
         }
         qitem.SetData(data);
         qitem.SetInventory(quickInventory);
+        qitem.GetComponent<Toggle>().group = qitem.transform.parent.parent.GetComponent<ToggleGroup>();
+        qitem.GetComponent<Toggle>().isOn = false;
         quickInventory.quickInvenItems.Add(qitem);
 
     }

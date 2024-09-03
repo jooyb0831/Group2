@@ -49,6 +49,12 @@ public class Inventory : Singleton<Inventory>
     private Player p;
 
     public int orderNum = 0;
+
+    public GameObject inventoryWindow;
+
+    [SerializeField] ItemGet ItemGetIfo;
+    private float timer;
+    private float time = 1f;
     //private Dictionary<ItemType, string[]> randDic = new Dictionary<ItemType, string[]>();
     // Key : ItemType, value : string[]
     // Start is called before the first frame update
@@ -80,6 +86,7 @@ public class Inventory : Singleton<Inventory>
         if (invenItemNameList.Contains(itemData.itemTitle) == true)
         {
             ItemCheck(itemData);
+            ItemAdd(itemData);
             return;
         }
 
@@ -126,6 +133,67 @@ public class Inventory : Singleton<Inventory>
         invenDatas.Add(item.data);
         inventoryData.items.Add(item);
         orderNum++;
+        ItemAdd(data);
+    }
+
+    public Transform itemgetBG;
+    void ItemAdd(InvenData data)
+    {
+
+        if (itemgetBG.GetComponent<ItemGetBG>().itemTitles.Contains(data.title) == true)
+        {
+            for (int i = 0; i < itemgetBG.GetComponent<ItemGetBG>().itemGets.Count; i++)
+            {
+                if (itemgetBG.GetComponent<ItemGetBG>().itemGets[i].itemTitle.text.Equals(data.title))
+                {
+                    itemgetBG.GetComponent<ItemGetBG>().itemGets[i].count += data.count;
+                    Debug.Log($"{ itemgetBG.GetComponent<ItemGetBG>().itemGets[i].count}");
+                    itemgetBG.GetComponent<ItemGetBG>().itemGets[i].itemCount.text = $"+{itemgetBG.GetComponent<ItemGetBG>().itemGets[i].count}";
+                    break;
+                }
+            }
+        }
+        
+        ItemGet obj = Instantiate(ItemGetIfo, itemgetBG);
+        obj.GetComponent<ItemGet>().icon = data.iconSprite;
+        obj.GetComponent<ItemGet>().itemTitleString = data.title;
+        obj.GetComponent<ItemGet>().itemTitle.text = data.title;
+        obj.GetComponent<ItemGet>().count = data.count;
+        obj.GetComponent<ItemGet>().itemCount.text = $"+ {data.count}";
+        itemgetBG.GetComponent<ItemGetBG>().itemGets.Add(obj);
+        itemgetBG.GetComponent<ItemGetBG>().itemTitles.Add(data.title);
+
+    }
+
+    void ItemAdd(ItemData data)
+    {
+
+        if (itemgetBG.GetComponent<ItemGetBG>().itemTitles.Contains(data.itemTitle) == true)
+        {
+            for (int i = 0; i < itemgetBG.GetComponent<ItemGetBG>().itemGets.Count; i++)
+            {
+                if (itemgetBG.GetComponent<ItemGetBG>().itemGets[i].itemTitle.text.Equals(data.itemTitle))
+                {
+                    itemgetBG.GetComponent<ItemGetBG>().itemGets[i].count += data.count;
+                    Debug.Log($"{ itemgetBG.GetComponent<ItemGetBG>().itemGets[i].count}");
+                    itemgetBG.GetComponent<ItemGetBG>().itemGets[i].itemCount.text = $"+{itemgetBG.GetComponent<ItemGetBG>().itemGets[i].count}";
+                    break;
+                }
+            }
+        }
+
+        else
+        {
+            ItemGet obj = Instantiate(ItemGetIfo, itemgetBG);
+            obj.GetComponent<ItemGet>().icon = data.fieldIcon;
+            obj.GetComponent<ItemGet>().itemTitleString = data.itemTitle;
+            obj.GetComponent<ItemGet>().itemTitle.text = data.itemTitle;
+            obj.GetComponent<ItemGet>().count = data.count;
+            obj.GetComponent<ItemGet>().itemCount.text = $"+ {data.count}";
+            itemgetBG.GetComponent<ItemGetBG>().itemGets.Add(obj);
+            itemgetBG.GetComponent<ItemGetBG>().itemTitles.Add(data.itemTitle);
+        }
+
     }
 
     int SlotCheck()

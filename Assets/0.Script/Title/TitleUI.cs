@@ -11,14 +11,14 @@ public class TitleUI : MonoBehaviour
     [SerializeField] private Image reconfirmWid;
     [SerializeField] private TMP_Text refimWidTxt;
     [SerializeField] private TMP_Text limLetter;
-    [SerializeField] private Player p;
+    [SerializeField] private PlayerData pData;
 
     [HideInInspector] public string myName;
     private float timer = 0;
     // Start is called before the first frame update
     void Start()
     {
-        
+        pData = GameManager.Instance.pData;
     }
 
     // Update is called once per frame
@@ -67,7 +67,8 @@ public class TitleUI : MonoBehaviour
     }
     public void GoGame()
     {
-        p.data.playerName = myName;
-        //씬 넘어가기 코드
+        pData.playerName = myName;
+        SceneChanger.Instance.GoGame();
+
     }
 }

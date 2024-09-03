@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class DialogueMng : MonoBehaviour
+public class DialogueMng : Singleton<DialogueMng>
 {
     [SerializeField] private GameObject dialoguePanel;
-    [SerializeField] private TextMeshProUGUI dialogueTxt;
-
-    private string[] dialogueLines;
+    [SerializeField] private TMP_Text dialogueTxt;
+    public TMP_Text NPCNameTxt;
+    public string[] dialogueLines;
     private int currentLineindex;
-
+    [SerializeField] GameObject npc;
     private void Start()
     {
-        dialoguePanel.SetActive(false);
+        
     }
 
     private void ShowNextDialogue()
@@ -21,6 +21,7 @@ public class DialogueMng : MonoBehaviour
         if (dialogueLines == null || currentLineindex >= dialogueLines.Length)
         {
             dialoguePanel.SetActive(false);
+            npc.GetComponent<Talk>().isDone = true;
             return;
         }
 
@@ -40,7 +41,7 @@ public class DialogueMng : MonoBehaviour
     {
         dialogueLines = lines;
         currentLineindex = 0;
-        dialoguePanel.SetActive(true);
+        //dialoguePanel.SetActive(true);
         ShowNextDialogue();
     }
 }

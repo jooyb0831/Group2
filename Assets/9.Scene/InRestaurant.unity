@@ -6101,6 +6101,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -11945,7 +11946,9 @@ MonoBehaviour:
   afterPos: {x: 0, y: 0}
   blackScreen: {fileID: 2676840788699702060, guid: 9a2a4e4323d9f8746a95d474cd7ce759, type: 3}
   ground: {fileID: 0}
+  p: {fileID: 0}
   screenType: 0
+  beforeScreen: 0
   isFarm: 1
 --- !u!4 &1885664968
 Transform:
