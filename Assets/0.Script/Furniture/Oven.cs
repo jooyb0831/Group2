@@ -139,6 +139,11 @@ public class Oven : MonoBehaviour
                 Cook();
             }
         }
+
+        //if (Input.button)
+        {
+
+        }
     }
 
     public void Cook()
@@ -195,5 +200,10 @@ public class Oven : MonoBehaviour
         }
 
         return false;*/
+    }
+
+    public void ExitScene(Oven oven)
+    {
+        Destroy(oven.gameObject);
     }
 }

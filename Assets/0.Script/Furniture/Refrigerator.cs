@@ -23,7 +23,9 @@ public class Refrigerator : MonoBehaviour
     {
         if (LookingAtObject())
         {
-            if (Input.GetMouseButtonDown(0))
+            //SceneChanger.Instance.FurOpen();
+
+            if (Input.GetKeyDown(KeyCode.F10))
             {
                 Interact();
             }
