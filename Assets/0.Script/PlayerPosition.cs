@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerPosition : Singleton<PlayerPosition>
 {
-    [SerializeField] Player p;
+    public Player p;
     public bool isSet = false;
+    [SerializeField] Transform[] playerPosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,6 @@ public class PlayerPosition : Singleton<PlayerPosition>
             p = GameManager.Instance.player;
             return;
         }
-
 
     }
 

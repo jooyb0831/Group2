@@ -8,7 +8,7 @@ public class ItemGet : MonoBehaviour
 {
     float time = 3f;
     float timer;
-    public Sprite icon;
+    public Image icon;
     public TMP_Text itemTitle;
     public TMP_Text itemCount;
     public string itemTitleString;

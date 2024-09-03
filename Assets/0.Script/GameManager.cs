@@ -176,4 +176,18 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    private FarmScene fs;
+    public FarmScene farmScene
+    {
+        get
+        {
+            if(fs == null)
+            {
+                fs = FindAnyObjectByType<FarmScene>();
+
+            }
+            return fs;
+        }
+    }
+
 }

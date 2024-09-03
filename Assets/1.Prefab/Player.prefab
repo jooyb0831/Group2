@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1601243819402325247}
   - component: {fileID: 1601243819402325245}
   - component: {fileID: 4003400695278568315}
+  - component: {fileID: 5014897598642748662}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -47,6 +48,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d82996f39e18e40824fe9a79038512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frontWalk: []
+  frontIdle: []
+  frontWork: []
+  siedWalk: []
+  sideIdle: []
+  sideWork: []
+  backWalk: []
+  backIdle: []
+  backWork: []
   sprites: []
 --- !u!114 &1601243819402325247
 MonoBehaviour:
@@ -60,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80336ec8452d0c84e95cb45d383f279f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   playerSprite:
     FrontWalk:
     - {fileID: 21300000, guid: 8f92b2d912773479894490421de2bc04, type: 3}
@@ -101,9 +112,18 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 461602cf177724a5b9780734e1f408fb, type: 3}
     - {fileID: 21300000, guid: afcfb31c2e79f4edcacff6d2ae846b1e, type: 3}
   speed: 0
+  dir: 0
   state: 2
   isWorking: 0
   isMoving: 0
+  objectArea: {fileID: 0}
+  isEquiped: 0
+  clampX: 0
+  clampY: 0
+  clampOnOff: 0
+  quickInvenSlots: []
+  isToolEquiped: 0
+  toolName: 
 --- !u!212 &1601243819402325245
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -172,3 +192,24 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0005541802, y: -0.03436048}
   m_Size: {x: 0.10829568, y: 0.20029283}
   m_Direction: 0
+--- !u!50 &5014897598642748662
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601243819402325244}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

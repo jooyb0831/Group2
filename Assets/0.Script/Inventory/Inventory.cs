@@ -153,15 +153,18 @@ public class Inventory : Singleton<Inventory>
                 }
             }
         }
-        
-        ItemGet obj = Instantiate(ItemGetIfo, itemgetBG);
-        obj.GetComponent<ItemGet>().icon = data.iconSprite;
-        obj.GetComponent<ItemGet>().itemTitleString = data.title;
-        obj.GetComponent<ItemGet>().itemTitle.text = data.title;
-        obj.GetComponent<ItemGet>().count = data.count;
-        obj.GetComponent<ItemGet>().itemCount.text = $"+ {data.count}";
-        itemgetBG.GetComponent<ItemGetBG>().itemGets.Add(obj);
-        itemgetBG.GetComponent<ItemGetBG>().itemTitles.Add(data.title);
+        else
+        {
+            ItemGet obj = Instantiate(ItemGetIfo, itemgetBG);
+            obj.GetComponent<ItemGet>().icon.sprite = data.iconSprite;
+            obj.GetComponent<ItemGet>().itemTitleString = data.title;
+            obj.GetComponent<ItemGet>().itemTitle.text = data.title;
+            obj.GetComponent<ItemGet>().count = data.count;
+            obj.GetComponent<ItemGet>().itemCount.text = $"+ {data.count}";
+            itemgetBG.GetComponent<ItemGetBG>().itemGets.Add(obj);
+            itemgetBG.GetComponent<ItemGetBG>().itemTitles.Add(data.title);
+        }
+
 
     }
 
@@ -185,7 +188,7 @@ public class Inventory : Singleton<Inventory>
         else
         {
             ItemGet obj = Instantiate(ItemGetIfo, itemgetBG);
-            obj.GetComponent<ItemGet>().icon = data.fieldIcon;
+            obj.GetComponent<ItemGet>().icon.sprite = data.invenIcon;
             obj.GetComponent<ItemGet>().itemTitleString = data.itemTitle;
             obj.GetComponent<ItemGet>().itemTitle.text = data.itemTitle;
             obj.GetComponent<ItemGet>().count = data.count;

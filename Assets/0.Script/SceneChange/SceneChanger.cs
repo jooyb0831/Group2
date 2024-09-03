@@ -39,13 +39,14 @@ public class SceneChanger : Singleton<SceneChanger>
         ground.transform.position = Vector3.zero;
         SceneManager.LoadScene("GameUI", LoadSceneMode.Additive);
         SceneManager.LoadScene("Continuous", LoadSceneMode.Additive);
+        SceneManager.LoadScene("NPC", LoadSceneMode.Additive);
     }
 
     public void GoFarm()
     {
-
-        StartCoroutine("FadeScreen");
         SceneManager.LoadScene("Farm");
+        StartCoroutine("FadeScreen");
+
         p = GameManager.Instance.player;
         screenType = ScreenType.Farm;
         //isFarm = true;
@@ -74,9 +75,10 @@ public class SceneChanger : Singleton<SceneChanger>
     public void GoHome()
     {
         screenType = ScreenType.House;
-        StartCoroutine("FadeScreen");
         SceneManager.LoadScene("InHouse");
-        PlayerPosition.Instance.isSet = false;
+        StartCoroutine("FadeScreen");
+        PlayerPosition.Instance.p = GameManager.Instance.player;
+        PlayerPosition.Instance.Check();
         SceneManager.LoadScene("GameUI", LoadSceneMode.Additive);
         ground.transform.position = new Vector2(100, 100);
         

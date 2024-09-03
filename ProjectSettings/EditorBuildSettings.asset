@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/9.Scene/Farm.unity
     guid: 91633cd26c74c104090cd11a17545bf2
   - enabled: 1
+    path: Assets/9.Scene/Basic.unity
+    guid: 8cb0b33632502784596c1426749bae91
+  - enabled: 1
+    path: Assets/9.Scene/NPC.unity
+    guid: 1a431c4f190c73a4fa4b50a2da36f468
+  - enabled: 1
     path: Assets/9.Scene/GameUI.unity
     guid: 583caa2c0f10dfa4f9316a34530ed241
   - enabled: 1
